@@ -8,6 +8,8 @@ using namespace std;
 
 int main()
 {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
     stack<int> S;
     int N; cin >> N;
     int num, idx=0, curr_num=1;
