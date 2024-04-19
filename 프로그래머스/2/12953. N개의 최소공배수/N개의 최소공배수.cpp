@@ -5,6 +5,36 @@ using namespace std;
 // 두 수의 최소공배수란 입력된 두 수의 배수 중 공통이 되는 가장 작은 수를 의미함.
 // n개의 수가 담긴 arr가 입력되었을 때 최소공배수를 반환하는 함수를 작성하라
 
+
+// 혼자 풀고 기존 풀이 참고해서 작성 //
+// GCD, LCM 사용한 풀이
+// Greatest Common Divisor(GCD), Lowest Common Multiple(LCM)는 유클리드 호재법에 의해 간단히 구현 가능함
+int GCD(int a, int b)
+{
+    while (b != 0){
+        int c = a % b;
+
+        a = b;
+        b = c;
+    }
+    return a;
+}
+
+// 두 수의 곱(a*b)은 두 수의 최대공약수(GCD)와 최소공배수(LCM)의 곱과 같다는 성질을 이용
+int LCM(int a, int b)
+{
+    return a * b / GCD(a, b);
+}
+
+int solution(vector<int> arr){
+    int curr = 1;
+    for (int i = 0; i < arr.size(); i++){
+        curr = LCM(arr[i], curr);
+    }
+    return curr;
+}
+
+// 기존 풀이
 // 최소공배수를 구하는 방법은 각 수를 소수 단위로 구성하고, 해당 소수가 사용된 최대 개수만큼씩 곱해주면 됨
 // 예시로 [2, 6, 8, 14]는 [2, 2x3, 2^3, 2x7]이므로 2^3 x 3 x 7 이 최소공배수임.
 // 그럼 이제 각 숫자를 이루고 있는 수를 어떻게 알 수 있는지 생각해봐야 함
@@ -14,7 +44,7 @@ using namespace std;
 vector<int> vPrime;
 bool aPrime[101];
 
-int solution(vector<int> arr){
+int solution2(vector<int> arr){
     int answer = 1;
 
     // calculate primes
